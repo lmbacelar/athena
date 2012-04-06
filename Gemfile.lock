@@ -69,6 +69,7 @@ GEM
       haml (~> 3.0)
       railties (~> 3.0)
     hike (1.2.1)
+    hirb (0.6.0)
     i18n (0.6.0)
     journey (1.0.3)
     jquery-rails (2.0.2)
@@ -162,6 +163,7 @@ DEPENDENCIES
   factory_girl_rails
   guard-rspec
   haml-rails
+  hirb
   jquery-rails
   pg
   rails (= 3.2.0)

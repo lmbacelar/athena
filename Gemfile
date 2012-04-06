@@ -23,6 +23,7 @@ end
 
 group :development do
   gem 'haml-rails'
+  gem 'hirb'
 end
 
 # To use ActiveModel has_secure_password
