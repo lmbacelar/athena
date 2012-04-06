@@ -1,25 +1,20 @@
 %h1 Listing documents
 
-%table
-  %tr
-    %th Name
-    %th Title
-    %th Subtitle
-    %th Description
-    %th
-    %th
-    %th
-
-  - @documents.each do |document|
+%table.table.table-striped
+  %thead
     %tr
-      %td= document.name
-      %td= document.title
-      %td= document.subtitle
-      %td= document.description
-      %td= link_to 'Show', document
-      %td= link_to 'Edit', edit_document_path(document)
-      %td= link_to 'Destroy', document, :confirm => 'Are you sure?', :method => :delete
+      %th Name
+      %th Title
+      %th Actions
+  %tbody
+    - @documents.each do |document|
+      %tr
+        %td= link_to document.name, document
+        %td= document.title
+        %td
+          = link_to 'Edit', edit_document_path(document), class: 'btn btn-mini'
+          = link_to 'Destroy', document, :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-mini btn-danger'
 
 %br
 
-= link_to 'New Document', new_document_path
+= link_to 'New Document', new_document_path, class: 'btn btn-primary'
