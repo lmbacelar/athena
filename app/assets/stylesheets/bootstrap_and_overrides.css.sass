@@ -1,0 +1,58 @@
+// Set the correct sprite paths
+$iconSpritePath: image-path('glyphicons-halflings.png')
+$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png')
+
+// Core variables and mixins
+// Modify this for custom colors, font-sizes, etc
+@import "bootstrap/variables"
+@import "bootstrap/mixins"
+// CSS Reset
+@import "bootstrap/reset"
+// Grid system and page structure
+@import "bootstrap/scaffolding"
+@import "bootstrap/grid"
+@import "bootstrap/layouts"
+// Base CSS
+@import "bootstrap/type"
+@import "bootstrap/code"
+@import "bootstrap/forms"
+@import "bootstrap/tables"
+// Components: common
+@import "bootstrap/sprites"
+@import "bootstrap/dropdowns"
+@import "bootstrap/wells"
+@import "bootstrap/component-animations"
+@import "bootstrap/close"
+// Components: Buttons & Alerts
+@import "bootstrap/buttons"
+@import "bootstrap/button-groups"
+// Note: alerts share common CSS with buttons and thus have styles in buttons.scss
+@import "bootstrap/alerts"
+// Components: Nav
+@import "bootstrap/navs"
+@import "bootstrap/navbar"
+@import "bootstrap/breadcrumbs"
+@import "bootstrap/pagination"
+@import "bootstrap/pager"
+// Components: Popovers
+@import "bootstrap/modals"
+@import "bootstrap/tooltip"
+@import "bootstrap/popovers"
+// Components: Misc
+@import "bootstrap/thumbnails"
+@import "bootstrap/labels"
+@import "bootstrap/badges"
+@import "bootstrap/progress-bars"
+@import "bootstrap/accordion"
+@import "bootstrap/carousel"
+@import "bootstrap/hero-unit"
+// Utility classes
+// Has to be last to override when necessary
+@import "bootstrap/utilities"
+
+/* compensate the overlap caused by bootstrap top navigation, min. 40px at the top! */
+body
+  padding: 60px 10px 10px 10px
+
+// Responsive classes
+@import "bootstrap-responsive"
