@@ -1,5 +1,10 @@
 Athena::Application.routes.draw do
-  resources :documents
+  scope ':locale' do
+    resources :documents
+    root to: 'documents#index'
+  end
+  match '*path', to: redirect("/#{I18n.default_locale}/%{path}")
+  match '', to: redirect("/#{I18n.default_locale}")
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -22,8 +22,15 @@
           %ul.nav
             %li= link_to 'Browse Documents', documents_path
             %li= link_to 'Price List'
-            %li= link_to 'Contact Us'
-            %li= link_to 'Cart'
+          -# TODO:
+          -# 1. Generate this dynamically using I18n.available_locales.
+          -# 2. Use button with dropdown, bootstrap styled
+          -#    btn face = I18n.locale
+          -#    btn dropdown = I18n.available_locales.delete(I18n.locale)
+          %ul.nav.pull-right
+            %li= link_to 'EN', locale: 'en'
+            %li.divider-vertical
+            %li= link_to 'PT', locale: 'pt'
 
   .container
     - flash.each do |name, msg|
