@@ -8,6 +8,6 @@
   %br= @document.description
 
 .form-actions
-  = link_to 'Back', documents_path, class: 'btn'
-  = link_to 'Edit', edit_document_path(@document), class: 'btn'
-  = link_to 'Destroy', @document, :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-danger'
+  = link_to t('actions.back'), documents_path, class: 'btn'
+  = link_to t('actions.edit'), edit_document_path(@document), class: 'btn'
+  = link_to t('actions.destroy'), @document, confirm: t('actions.confirm'), method: :delete, class: 'btn btn-danger'

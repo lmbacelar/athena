@@ -1,20 +1,20 @@
-%h1 Listing documents
+%h1= t '.title'
 
 %table.table.table-striped
   %thead
     %tr
-      %th Name
-      %th Title
-      %th Actions
+      %th= Document.human_attribute_name :name
+      %th= Document.human_attribute_name :title
+      %th= t 'actions.actions'
   %tbody
     - @documents.each do |document|
       %tr
         %td= link_to document.name, document
         %td= document.title
         %td
-          = link_to 'Edit', edit_document_path(document), class: 'btn btn-mini'
-          = link_to 'Destroy', document, :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-mini btn-danger'
+          = link_to t('actions.edit'), edit_document_path(document), class: 'btn btn-mini'
+          = link_to t('actions.destroy'), document, confirm: t('actions.confirm'), method: :delete, class: 'btn btn-mini btn-danger'
 
 %br
 
-= link_to 'New Document', new_document_path, class: 'btn btn-primary'
+= link_to "#{t('actions.new')} #{Document.model_name.human}", new_document_path, class: 'btn btn-primary'

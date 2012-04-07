@@ -1,4 +1,36 @@
 en:
+  layouts:
+    application:
+      name: 'Athena'
+      documents_link: 'Browse Documents'
+      about: 'About Us'
+
+  documents:
+    index:
+      title: 'Listing documents'
+
+  actions:
+    actions: 'Actions'
+    new: 'Show'
+    create: 'Create'
+    update: 'Update'
+    show: 'Show'
+    edit: 'Edit'
+    destroy: 'Destroy'
+    confirm: 'Are you sure?'
+    cancel: 'Cancel'
+    back: 'Back'
+
+  activerecord:
+    models:
+      document: 'Document'
+    attributes:
+      document:
+        name: 'Name'
+        title: 'Title'
+        subtitle: 'Subtitle'
+        description: 'Description'
+
   date:
     abbr_day_names:
     - Sun

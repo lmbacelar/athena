@@ -1,6 +1,6 @@
 = simple_form_for @document, html: {class: 'form-horizontal'} do |f|
   %fieldset
-    %legend= "#{controller.action_name.capitalize} Document"
+    %legend= "#{t("actions.#{controller.action_name.downcase}")} #{Document.model_name.human}"
 
     = f.input :name, input_html: { class: 'span3' }
     = f.input :title, input_html: { class: 'span5' }
@@ -9,4 +9,4 @@
 
     .form-actions
       = f.button :submit, class: 'btn btn-primary'
-      = link_to 'Cancel', documents_path, class: 'btn'
+      = link_to t('actions.cancel'), documents_path, class: 'btn'

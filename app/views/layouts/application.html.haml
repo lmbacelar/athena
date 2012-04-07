@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Athena
+    %title= t '.name'
     /[if lt IE 9]
       %script{ src: 'http://html5shim.googlecode.com/svn/trunk/html5.js', type: 'text/javascript' }
 
@@ -17,20 +17,20 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        %a.brand{ href: '#' } Athena
+        %a.brand{ href: '#' }= t '.name'
         .nav-collapse
           %ul.nav
-            %li= link_to 'Browse Documents', documents_path
-            %li= link_to 'Price List'
-          -# TODO:
-          -# 1. Generate this dynamically using I18n.available_locales.
-          -# 2. Use button with dropdown, bootstrap styled
-          -#    btn face = I18n.locale
-          -#    btn dropdown = I18n.available_locales.delete(I18n.locale)
+            %li= link_to t('.documents_link'), documents_path
           %ul.nav.pull-right
-            %li= link_to 'EN', locale: 'en'
-            %li.divider-vertical
-            %li= link_to 'PT', locale: 'pt'
+            - if I18n.available_locales.count > 1
+              %li.dropdown
+                %a.dropdown-toggle{ href: '#', 'data-toggle' => 'dropdown' }
+                  = "#{I18n.locale.upcase} "
+                  %b.caret
+                %ul.dropdown-menu
+                  - I18n.available_locales.each do |loc|
+                    - unless loc == I18n.locale
+                      %li= link_to loc.upcase, locale: loc
 
   .container
     - flash.each do |name, msg|
@@ -41,5 +41,5 @@
       .span9
         = yield
       .span3
-        %h2 About Us
+        %h2= t '.about'
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

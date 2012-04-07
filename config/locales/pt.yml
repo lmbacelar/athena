@@ -1,4 +1,36 @@
 pt:
+  layouts:
+    application:
+      name: 'Athena'
+      documents_link: 'Consultar Documentos'
+      about: 'Sobre nós'
+
+  documents:
+    index:
+      title: 'Lista de documentos'
+
+  actions:
+    actions: 'Ações'
+    new: 'Novo'
+    create: 'Criar'
+    update: 'Actualizar'
+    show: 'Ver'
+    edit: 'Editar'
+    destroy: 'Destruir'
+    confirm: 'Tem a certeza?'
+    cancel: 'Cancelar'
+    back: 'Voltar'
+
+  activerecord:
+    models:
+      document: 'Documento'
+    attributes:
+      document:
+        name: 'Nome'
+        title: 'Título'
+        subtitle: 'Subtítulo'
+        description: 'Descrição'
+
   date:
     abbr_day_names:
     - Dom
