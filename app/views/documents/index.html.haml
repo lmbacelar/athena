@@ -9,7 +9,7 @@
   %tbody
     - @documents.each do |document|
       %tr
-        %td= link_to document.name, document
+        %td= link_to document.name, document, rel: 'tooltip', title: t('actions.show')
         %td= document.title
         %td
           = link_to t('actions.edit'), edit_document_path(document), class: 'btn btn-mini'
