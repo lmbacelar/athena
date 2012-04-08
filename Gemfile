@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.0'
+gem 'date_validator'
 gem 'pg'
 gem 'jquery-rails'
 gem 'simple_form', '~> 2.0.0.rc'
