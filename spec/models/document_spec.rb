@@ -3,32 +3,13 @@ require 'spec_helper'
 describe Document do
   let(:doc) { FactoryGirl.create(:document) }
 
-  describe 'name validation' do
-    it 'fails when empty' do
-      FactoryGirl.build(:document, name: nil).should_not be_valid
-    end
-
-    it 'fails when duplicate' do
-      FactoryGirl.build(:document, name: doc.name).should_not be_valid
-    end
-
-    it 'fails when too small' do
-      char_count = (Document::NameLengthRange.first - 1)
-      FactoryGirl.build(:document, name: "-" * char_count).should_not be_valid
-    end
-
-    it 'fails when too large' do
-      char_count = (Document::NameLengthRange.last + 1)
-      FactoryGirl.build(:document, name: "-" * char_count).should_not be_valid
-    end
-  end
-
-  describe 'title validation' do
-    it 'fails when empty' do
-      FactoryGirl.build(:document, title: nil).should_not be_valid
-    end
-    it 'fails when duplicate' do
-      FactoryGirl.build(:document, title: doc.title).should_not be_valid
-    end
+  # Validations
+  it { should validate_presence_of :name }
+  it { should validate_presence_of :title }
+  subject { FactoryGirl.create(:document) }
+  it { should validate_uniqueness_of(:name) }
+  it { should validate_uniqueness_of(:title) }
+  it 'should be valid with all valid attributes' do
+    doc.should be_valid
   end
 end
