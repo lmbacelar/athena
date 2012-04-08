@@ -11,7 +11,7 @@ en:
 
   actions:
     actions: 'Actions'
-    new: 'Show'
+    new: 'New'
     create: 'Create'
     update: 'Update'
     show: 'Show'
