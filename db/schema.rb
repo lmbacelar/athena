@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120405195250) do
+ActiveRecord::Schema.define(:version => 20120408170120) do
 
   create_table "documents", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(:version => 20120405195250) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "versions", :force => true do |t|
+    t.integer  "number"
+    t.string   "author"
+    t.date     "authored_date"
+    t.string   "checker"
+    t.date     "checked_date"
+    t.string   "approver"
+    t.date     "approved_date"
+    t.string   "withdrawer"
+    t.date     "withdrawn_date"
+    t.integer  "document_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
 end
