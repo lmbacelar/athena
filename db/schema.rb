@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120409220003) do
+ActiveRecord::Schema.define(:version => 20120412002518) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -26,24 +26,26 @@ ActiveRecord::Schema.define(:version => 20120409220003) do
     t.string   "title"
     t.string   "subtitle"
     t.text     "description"
+    t.integer  "category_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.integer  "category_id"
+  end
+
+  create_table "state_changes", :force => true do |t|
+    t.string   "user"
+    t.string   "state"
+    t.string   "event"
+    t.integer  "version_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "versions", :force => true do |t|
     t.integer  "number"
-    t.string   "author"
-    t.date     "authored_date"
-    t.string   "checker"
-    t.date     "checked_date"
-    t.string   "approver"
-    t.date     "approved_date"
-    t.string   "withdrawer"
-    t.date     "withdrawn_date"
+    t.string   "state"
     t.integer  "document_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end
