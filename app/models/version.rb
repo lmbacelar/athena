@@ -19,6 +19,8 @@ class Version < ActiveRecord::Base
 
   # # # # # State Machine Setup
   state_machine initial: :initiated do
+    # TODO: maybe replace after_create callback with initialize
+    #       overloading on state_machine
     after_transition :add_state_change
 
     event :check    do ( transition :initiated           => :draft     ) end
