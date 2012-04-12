@@ -4,7 +4,6 @@ gem 'rails', '3.2.0'
 gem 'pg'
 gem 'jquery-rails'
 gem 'state_machine'
-gem 'date_validator'
 gem 'simple_form', '~> 2.0.0.rc'
 
 # Gems used only for assets and not required
@@ -26,6 +25,6 @@ end
 
 group :development do
   gem 'haml-rails'
-  gem 'hirb'
+  gem 'pry-rails'
   gem 'thin'
 end
