@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.0'
-gem 'date_validator'
 gem 'pg'
 gem 'jquery-rails'
+gem 'state_machine'
+gem 'date_validator'
 gem 'simple_form', '~> 2.0.0.rc'
 
 # Gems used only for assets and not required
@@ -15,7 +16,7 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.0.2'
 end
 
-gem 'rspec-rails', :group => [:test, :development]
+gem 'rspec-rails', group: [:test, :development]
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
