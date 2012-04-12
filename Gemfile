@@ -26,5 +26,6 @@ end
 group :development do
   gem 'haml-rails'
   gem 'pry-rails'
+  gem 'hirb'
   gem 'thin'
 end
