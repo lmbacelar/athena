@@ -1,88 +1,153 @@
 require 'spec_helper'
 
 describe Version do
-#   context 'validations:' do
-#
-#     let(:ver) { create(:version) }
-#
-#     it { should validate_presence_of :number }
-#     it { should validate_presence_of :author }
-#     it { should validate_presence_of :authored_date }
-#     it { should validate_presence_of :document }
-#
-#     specify 'number should be unique on each document' do
-#       ver.should validate_uniqueness_of(:number).scoped_to(:document_id)
-#     end
-#
-#     it 'is invalid when author date is in the future' do
-#       ver.should_not allow_value(1.second.from_now).for(:authored_date)
-#       ver.should     allow_value(Time.zone.now).for(:authored_date)
-#     end
-#
-#     specify 'checked date should be after or equal to authored date' do
-#       unchk = create(:unchecked_version,  authored_date: '2010-01-01',
-#                                           checker: 'Checker')
-#       %w{1990-01-01 2009-12-31}.each do |date|
-#         unchk.should_not allow_value(date).for(:checked_date)
-#       end
-#       %w{2010-01-01 2010-01-02 2010-12-31}.each do |date|
-#         unchk.should     allow_value(date).for(:checked_date)
-#       end
-#     end
-#
-#     specify 'approved date should be after or equal to checked date' do
-#       unapp = create(:unapproved_version,  authored_date: '2009-12-31',
-#                                            checked_date: '2010-01-01',
-#                                            approver: 'Approver')
-#       %w{1990-01-01 2009-12-30 2009-12-31}.each do |date|
-#         unapp.should_not allow_value(date).for(:approved_date)
-#       end
-#       %w{2010-01-01 2010-01-02 2010-12-31}.each do |date|
-#         unapp.should     allow_value(date).for(:approved_date)
-#       end
-#     end
-#
-#     specify 'withdrawn date should be after or equal to authored date' do
-#       unchk = create(:unchecked_version,  authored_date: '2010-01-01',
-#                                           withdrawer: 'Withdrawer')
-#       %w{1990-01-01 2009-12-30 2009-12-31}.each do |date|
-#         unchk.should_not allow_value(date).for(:withdrawn_date)
-#       end
-#       %w{2010-01-01 2010-02-01 2010-12-31}.each do |date|
-#         unchk.should     allow_value(date).for(:withdrawn_date)
-#       end
-#     end
-#
-#     specify 'state should be draft when not checked' do
-#       create(:unchecked_version).state.should eq(:draft)
-#       create(:checked_version).state.should_not eq(:draft)
-#       create(:approved_version).state.should_not eq(:draft)
-#       create(:withdrawn_version).state.should_not eq(:draft)
-#     end
-#
-#     specify 'state should be checked when not approved' do
-#       create(:unapproved_version).state.should eq(:checked)
-#       create(:draft_version).state.should_not eq(:checked)
-#       create(:approved_version).state.should_not eq(:checked)
-#       create(:withdrawn_version).state.should_not eq(:checked)
-#     end
-#
-#     specify 'state should be approved when approved and not withdrawn' do
-#       create(:approved_version).state.should eq(:approved)
-#       create(:draft_version).state.should_not eq(:approved)
-#       create(:checked_version).state.should_not eq(:approved)
-#       create(:withdrawn_version).state.should_not eq(:approved)
-#     end
-#
-#     specify 'state should be withdrawn when withdrawn' do
-#       create(:withdrawn_version).state.should eq(:withdrawn)
-#       create(:approved_version).state.should_not eq(:withdrawn)
-#       create(:draft_version).state.should_not eq(:withdrawn)
-#       create(:checked_version).state.should_not eq(:withdrawn)
-#     end
-#   end
-#
-#   context 'associations:' do
-#     it {should belong_to :document }
-#   end
+  describe 'validations:' do
+    it { should validate_presence_of :number }
+    it { should validate_presence_of :document }
+  end
+
+  describe 'associations:' do
+    it { should belong_to :document }
+    it { should have_many(:state_changes).dependent(:destroy) }
+  end
+
+  describe 'state_machine:' do
+    let(:vsn) { create(:version) }
+
+    describe 'events:' do
+      events = [:check, :publish, :withdraw, :discard]
+      specify "should be [#{events.join(', ')}]" do
+        (events - vsn.events).count.should eq(0)
+        (vsn.events - events).count.should eq(0)
+      end
+    end
+
+    describe 'states:' do
+      states = [:initiated, :draft, :published, :withdrawn, :discarded]
+      specify "should be [#{states.join(', ')}]" do
+        (states - vsn.states).count.should eq(0)
+        (vsn.states - states).count.should eq(0)
+      end
+
+      describe ':initiated' do
+        it 'should be the initial state' do
+          vsn.initiated?.should be_true
+        end
+        it 'should change to :draft on check' do
+          vsn.check
+          vsn.draft?.should be_true
+        end
+        it 'should change to :discarded on discard' do
+          vsn.discard
+          vsn.discarded?.should be_true
+        end
+        ['publish!', 'withdraw!'].each do |action|
+          it "should raise an error for #{action}" do
+            lambda {vsn.send(action)}.should raise_error
+          end
+        end
+      end
+
+      describe ':draft' do
+        it 'should change to :published on publish' do
+          vsn.check; vsn.publish
+          vsn.published?.should be_true
+        end
+        it 'should change to :discarded on discard' do
+          vsn.check; vsn.discard
+          vsn.discarded?.should be_true
+        end
+        it 'should not change on check' do
+          vsn.check; vsn.check
+          vsn.draft?.should be_true
+        end
+        it 'should raise an error for withdraw' do
+          vsn.check
+          vsn.withdraw.should raise_error
+        end
+      end
+
+      describe ':published' do
+        it 'should change to :withdrawn on withdraw' do
+          vsn.check; vsn.publish; vsn.withdraw
+          vsn.withdrawn?.should be_true
+        end
+        it 'should not change on publish' do
+          vsn.check; vsn.publish; vsn.publish
+          vsn.published?.should be_true
+        end
+        ['check!', 'discard!'].each do |action|
+          it "should raise an error for #{action}" do
+            vsn.check; vsn.publish
+            lambda {vsn.send(action)}.should raise_error
+          end
+        end
+      end
+
+      describe ':withdrawn' do
+        it 'should change to :published on publish' do
+          vsn.check; vsn.publish; vsn.withdraw; vsn.publish
+          vsn.published?.should be_true
+        end
+        it 'should not change on withdraw' do
+          vsn.check; vsn.publish; vsn.publish; vsn.withdraw; vsn.withdraw
+          vsn.withdrawn?.should be_true
+        end
+        ['check!', 'discard!'].each do |action|
+          it "should raise an error for #{action}" do
+            vsn.check; vsn.publish; vsn.withdraw
+            lambda {vsn.send(action)}.should raise_error
+          end
+        end
+      end
+
+      describe ':discarded' do
+        it 'should not change on discard' do
+          vsn.discard; vsn.discard
+          vsn.discarded?.should be_true
+          vsn.check; vsn.discard; vsn.discard
+          vsn.discarded?.should be_true
+        end
+        ['check!', 'discard!', 'publish!', 'withdraw!'].each do |action|
+          it "should raise an error for #{action}" do
+            vsn.discard
+            lambda {vsn.send(action)}.should raise_error
+          end
+        end
+      end
+    end
+  end
+
+  describe 'state_changes:' do
+    let(:vsn) { create(:version) }
+    # This assumes tests from database commit to time test can run within :secs seconds.
+    # If tests fail, check this timing, specially when having slow db connections
+    let(:secs) { 1 }
+
+    specify 'should be created on new version' do
+      vsn.state_changes.should_not be_nil
+      vsn.state_changes.count.should eq(1)
+      (Time.now - vsn.last_state_change.created_at).should be < secs
+      vsn.last_state_change.state.should eq(vsn.state)
+    end
+    specify 'should be added on state transition' do
+      sleep secs; vsn.check
+      vsn.state_changes.count.should eq(2)
+      (Time.now - vsn.last_state_change.created_at).should be < secs
+      vsn.last_state_change.state.should eq(vsn.state)
+    end
+    specify 'should not be changed on state unchanged' do
+      vsn.check; sleep secs; vsn.check
+      vsn.state_changes.count.should eq(2)
+      (Time.now - vsn.last_state_change.updated_at).should be > secs
+      vsn.last_state_change.state.should eq(vsn.state)
+    end
+    specify 'should not be added on raised error' do
+      vsn.withdraw; sleep secs
+      vsn.state_changes.count.should eq(1)
+      (Time.now - vsn.last_state_change.updated_at).should be > secs
+      vsn.last_state_change.state.should eq(vsn.state)
+    end
+  end
+
 end
