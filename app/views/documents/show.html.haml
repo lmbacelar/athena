@@ -3,9 +3,9 @@
 %p
   %h2= @document.title
   %h3= @document.subtitle
-%p
-  %strong Description
-  %br= @document.description
+%dl
+  %dt Description
+  %dd= @document.description
 
 .form-actions
   = link_to t('actions.back'), documents_path, class: 'btn'

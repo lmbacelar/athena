@@ -15,6 +15,4 @@
           = link_to t('actions.edit'), edit_document_path(document), class: 'btn btn-mini'
           = link_to t('actions.destroy'), document, confirm: t('actions.confirm'), method: :delete, class: 'btn btn-mini btn-danger'
 
-%br
-
 = link_to "#{t('actions.new')} #{Document.model_name.human}", new_document_path, class: 'btn btn-primary'
