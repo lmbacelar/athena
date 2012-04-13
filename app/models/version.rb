@@ -29,6 +29,28 @@ class Version < ActiveRecord::Base
     event :discard  do ( transition [:initiated, :draft] => :discarded ) end
   end
 
+  # # # # # Public Methods
+  # # # # # Class Methods
+  def self.states
+    state_machine.states.map &:name
+  end
+  def self.events
+    state_machine.events.map &:name
+  end
+
+  # # # # # Instance Methods
+  def states
+    self.class.states
+  end
+  def events
+    self.class.events
+  end
+
+  def last_state_change
+    self.state_changes.order('created_at').last
+  end
+
+  # # # # # Private Methods
 private
   def create_state_change
     self.state_changes.create state: human_state_name, user: 'User'
