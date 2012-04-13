@@ -13,26 +13,14 @@ FactoryGirl.define do
     category
   end
 
-  factory :version, aliases: [:draft_version, :unchecked_version] do
-    sequence(:number)
-    author 'Author'
-    authored_date '2010-01-01'
+  factory :version do
     document
+  end
 
-    factory :checked_version, aliases: [:unapproved_version] do
-      checker 'Checker'
-      checked_date '2010-01-02'
-
-      factory :approved_version do
-        approver 'Approver'
-        approved_date '2010-01-03'
-
-        factory :withdrawn_version do
-          withdrawer 'Withdrawer'
-          withdrawn_date '2010-01-04'
-        end
-      end
-    end
+  factory :state_change do
+    user 'User'
+    state 'initiated'
+    version
   end
 end
 
