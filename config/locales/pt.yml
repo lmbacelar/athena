@@ -9,6 +9,7 @@ pt:
     index:
       title: 'Lista de documentos'
 
+
   actions:
     actions: 'Ações'
     new: 'Novo'
@@ -23,6 +24,7 @@ pt:
     signup: 'Registar'
     login: 'Iniciar sessão'
     logout: 'Terminar sessão'
+    reset_password: 'Recuperar password'
 
   session:
     logged_in: 'Sessão iniciada'
@@ -37,9 +39,12 @@ pt:
       destroy: 'foi destruído com sucesso.'
       logged_in: 'Sessão iniciada com sucesso!'
       logged_out: 'Sessão terminada com sucesso!'
+      password_reset_email_sent: 'Foi enviado um email com instruções para recuperar a password.'
+      password_reset: 'Password alterada com sucesso!'
     alert:
       login_invalid: 'Email e/ou password inválidos!'
       unauthorized: 'Não autorizado!'
+      password_reset_expired: 'O formulário de recuperação de password expirou!'
 
   activerecord:
     models:
@@ -57,6 +62,13 @@ pt:
         remember_me: 'Manter sessão iniciada'
         password: 'Password'
         password_confirmation: 'Confirme password'
+
+  user_mailer:
+    password_reset:
+      subject: '[ATHENA] Recuperação de password'
+      instructions:
+        step1: 'Para recuperar a sua password clique no link abaixo.'
+        step2: 'Se não pediu para recuperar a sua password, ignore este email. A password manter-se-á inalterada.'
 
   date:
     abbr_day_names:

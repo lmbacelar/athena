@@ -5,9 +5,13 @@ Athena::Application.routes.draw do
     get 'login', to: 'sessions#new', as: 'login'
     get 'logout', to: 'sessions#destroy', as: 'logout'
 
-    resources :sessions
     resources :users
+    resources :sessions
+    resources :password_resets
     resources :documents
+
+    # this now creates error on views when accessing /documents directly
+    # will be fixed when there is a welcome page
     root to: 'documents#index'
   end
   match '*path', to: redirect("/#{I18n.default_locale}/%{path}")

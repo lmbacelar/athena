@@ -1,10 +1,23 @@
 class User < ActiveRecord::Base
+  # TODO: Add confirmation via token sent by email.
+
   has_secure_password
   before_create { generate_token(:auth_token) }
 
-  attr_accessible :email, :password, :password_confirmation
-  validates_presence_of :email, :password
-  validates_uniqueness_of :email
+  attr_accessible :email, :name, :password, :password_confirmation
+  validates :email, presence: true, uniqueness: true
+  validates_presence_of :password, on: :create
+
+  def to_s
+    name || email
+  end
+
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self).deliver
+  end
 
   def generate_token(column)
     begin

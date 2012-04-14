@@ -1,7 +1,7 @@
 - if current_user
   %li.dropdown
     %a.dropdown-toggle{ href: '#', 'data-toggle' => 'dropdown' }
-      = "#{ t('session.logged_in_as') } #{ current_user.email }"
+      = "#{ t('session.logged_in_as') } #{ current_user }"
       %b.caret
     %ul.dropdown-menu
       %li= link_to "#{ t('actions.edit') } #{ User.model_name.human }", current_user
@@ -14,5 +14,6 @@
       %b.caret
     %ul.dropdown-menu
       %li= link_to t('actions.login'), login_path
+      %li= link_to t('actions.reset_password'), new_password_reset_path
       %li.divider
       %li= link_to t('actions.signup'), signup_path
