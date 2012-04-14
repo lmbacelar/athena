@@ -29,4 +29,5 @@ group :development do
   gem 'pry-rails'
   gem 'hirb'
   gem 'thin'
+  gem 'quiet_assets'
 end
