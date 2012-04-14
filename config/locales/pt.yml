@@ -54,6 +54,7 @@ pt:
       user:
         email: 'Email'
         name: 'Nome'
+        remember_me: 'Manter sessão iniciada'
         password: 'Password'
         password_confirmation: 'Confirme password'
 
