@@ -20,16 +20,42 @@ en:
     confirm: 'Are you sure?'
     cancel: 'Cancel'
     back: 'Back'
+    signup: 'Sign Up'
+    login: 'Login'
+    logout: 'Logout'
+
+  session:
+    logged_in: 'Logged In'
+    logged_in_as: 'Logged In as'
+    logged_out: 'Logged Out'
+
+  flash:
+    notice:
+      signup: 'Thank you for signing up!'
+      create: 'was successfully created.'
+      update: 'was successfully updated.'
+      destroy: 'was successfully destroyed.'
+      logged_in: 'Logged In!'
+      logged_out: 'Logged Out!'
+    alert:
+      login_invalid: 'Email or password is invalid!'
+      unauthorized: 'Not authorized!'
 
   activerecord:
     models:
       document: 'Document'
+      user: 'User'
     attributes:
       document:
         name: 'Name'
         title: 'Title'
         subtitle: 'Subtitle'
         description: 'Description'
+      user:
+        email: 'Email'
+        name: 'Name'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
 
   date:
     abbr_day_names:

@@ -7,4 +7,9 @@ class StateChange < ActiveRecord::Base
   # # # # # Associations
   belongs_to :version
 
+  # # # # # Public Methods
+  # # # # # Instance Methods
+  def to_s
+    "Set as #{state} by #{user} on #{updated_at}"
+  end
 end

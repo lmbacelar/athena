@@ -4,6 +4,8 @@
   %h2= @document.title
   %h3= @document.subtitle
 %dl
+  %dt Category
+  %dd= @document.category.to_s
   %dt Description
   %dd= @document.description
 

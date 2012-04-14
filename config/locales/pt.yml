@@ -20,16 +20,42 @@ pt:
     confirm: 'Tem a certeza?'
     cancel: 'Cancelar'
     back: 'Voltar'
+    signup: 'Registar'
+    login: 'Iniciar sessão'
+    logout: 'Terminar sessão'
+
+  session:
+    logged_in: 'Sessão iniciada'
+    logged_in_as: 'Sessão iniciada como'
+    logged_out: 'Sessão terminada'
+
+  flash:
+    notice:
+      signup: 'Obrigado pelo seu registo!'
+      create: 'foi criado com sucesso.'
+      update: 'foi actualizado com sucesso.'
+      destroy: 'foi destruído com sucesso.'
+      logged_in: 'Sessão iniciada com sucesso!'
+      logged_out: 'Sessão terminada com sucesso!'
+    alert:
+      login_invalid: 'Email e/ou password inválidos!'
+      unauthorized: 'Não autorizado!'
 
   activerecord:
     models:
       document: 'Documento'
+      user: 'Utilizador'
     attributes:
       document:
         name: 'Nome'
         title: 'Título'
         subtitle: 'Subtítulo'
         description: 'Descrição'
+      user:
+        email: 'Email'
+        name: 'Nome'
+        password: 'Password'
+        password_confirmation: 'Confirme password'
 
   date:
     abbr_day_names:

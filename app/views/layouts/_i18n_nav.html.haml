@@ -1,0 +1,9 @@
+- if I18n.available_locales.count > 1
+  %li.dropdown
+    %a.dropdown-toggle{ href: '#', 'data-toggle' => 'dropdown' }
+      = "#{I18n.locale.upcase} "
+      %b.caret
+    %ul.dropdown-menu
+      - I18n.available_locales.each do |loc|
+        - unless loc == I18n.locale
+          %li= link_to loc.upcase, locale: loc

@@ -44,7 +44,8 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
+        format.html { redirect_to @document,
+                                  notice: "#{Document.model_name.human} #{ t('flash.notice.create')}" }
         format.json { render json: @document, status: :created, location: @document }
       else
         format.html { render action: "new" }
@@ -60,7 +61,8 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.update_attributes(params[:document])
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
+        format.html { redirect_to @document,
+                                  notice: "#{Document.model_name.human} #{ t('flash.notice.update')}" }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +78,8 @@ class DocumentsController < ApplicationController
     @document.destroy
 
     respond_to do |format|
-      format.html { redirect_to documents_url }
+      format.html { redirect_to documents_url,
+                                notice: "#{Document.model_name.human} #{ t('flash.notice.destroy')}" }
       format.json { head :no_content }
     end
   end

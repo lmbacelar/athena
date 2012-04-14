@@ -1,0 +1,18 @@
+- if current_user
+  %li.dropdown
+    %a.dropdown-toggle{ href: '#', 'data-toggle' => 'dropdown' }
+      = "#{ t('session.logged_in_as') } #{ current_user.email }"
+      %b.caret
+    %ul.dropdown-menu
+      %li= link_to "#{ t('actions.edit') } #{ User.model_name.human }", current_user
+      %li.divider
+      %li= link_to t('actions.logout'), logout_path
+- else
+  %li.dropdown
+    %a.dropdown-toggle{ href: '#', 'data-toggle' => 'dropdown' }
+      = "#{ t('session.logged_out') } "
+      %b.caret
+    %ul.dropdown-menu
+      %li= link_to t('actions.login'), login_path
+      %li.divider
+      %li= link_to t('actions.signup'), signup_path

@@ -6,4 +6,10 @@ class Category < ActiveRecord::Base
 
   # Associations
   has_many :documents, dependent: :destroy
+
+  # # # # # Public Methods
+  # # # # # Instance Methods
+  def to_s
+    name
+  end
 end

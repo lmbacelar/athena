@@ -1,5 +1,12 @@
 Athena::Application.routes.draw do
+
   scope ':locale' do
+    get 'signup', to: 'users#new', as: 'signup'
+    get 'login', to: 'sessions#new', as: 'login'
+    get 'logout', to: 'sessions#destroy', as: 'logout'
+
+    resources :sessions
+    resources :users
     resources :documents
     root to: 'documents#index'
   end

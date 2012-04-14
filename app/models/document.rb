@@ -7,4 +7,10 @@ class Document < ActiveRecord::Base
   # Associations
   belongs_to :category
   has_many :versions, dependent: :destroy
+
+  # # # # # Public Methods
+  # # # # # Instance Methods
+  def to_s
+    name
+  end
 end

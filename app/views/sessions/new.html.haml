@@ -1,0 +1,17 @@
+
+= form_tag sessions_path, class: 'simple_form form-horizontal' do
+  %fieldset
+    %legend= t 'actions.login'
+    .control-group.email.required
+      .control-label.email.required
+        = label_tag :email
+      .controls
+        = text_field_tag :email, params[:email]
+    .control-group.password.required
+      .control-label.password.required
+        = label_tag :password
+      .controls
+        = password_field_tag :password
+    .form-actions
+      = submit_tag t('actions.login'), class: 'btn btn-primary'
+      = link_to t('actions.cancel'), documents_path, class: 'btn'
