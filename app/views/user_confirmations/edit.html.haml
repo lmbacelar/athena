@@ -1,0 +1,8 @@
+= simple_form_for @user, url: user_confirmation_path(params[:id]), html: {class: 'form-horizontal'} do |f|
+  %fieldset
+    %legend= "#{t('actions.confirm_user')}"
+    %p
+      = render @user
+    .form-actions
+      = f.button :submit, t('actions.activate'), class: 'btn-primary'
+      = link_to t('actions.cancel'), root_path, class: 'btn'

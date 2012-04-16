@@ -4,7 +4,8 @@
 User.create email: 'lmbacelar@gmail.com',
             name: 'Luis Bacelar',
             password: 'secret',
-            password_confirmation: 'secret'
+            password_confirmation: 'secret',
+            confirmed: true
 l1 = Category.create  name: 'Manual da Qualidade',
                       acronym: 'MQ',
                       level: 1

@@ -7,4 +7,9 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail to: user.email
   end
+
+  def confirmation(user)
+    @user = user
+    mail to: user.email
+  end
 end

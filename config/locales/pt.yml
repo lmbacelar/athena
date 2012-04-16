@@ -9,7 +9,6 @@ pt:
     index:
       title: 'Lista de documentos'
 
-
   actions:
     actions: 'Ações'
     new: 'Novo'
@@ -24,6 +23,9 @@ pt:
     signup: 'Registar'
     login: 'Iniciar sessão'
     logout: 'Terminar sessão'
+    send: 'Enviar'
+    activate: 'Ativar'
+    confirm_user: 'Confirmar utilizador'
     reset_password: 'Recuperar password'
 
   session:
@@ -39,6 +41,8 @@ pt:
       destroy: 'foi destruído com sucesso.'
       logged_in: 'Sessão iniciada com sucesso!'
       logged_out: 'Sessão terminada com sucesso!'
+      user_confirmation_email_sent: 'Foi enviado um email com instruções para confirmar o utilizador.'
+      user_confirmed: 'O utilizador foi confirmado com sucesso.'
       password_reset_email_sent: 'Foi enviado um email com instruções para recuperar a password.'
       password_reset: 'Password alterada com sucesso!'
     alert:
@@ -64,6 +68,12 @@ pt:
         password_confirmation: 'Confirme password'
 
   user_mailer:
+    confirmation:
+      subject: '[ATHENA] Ativação de utilizador'
+      instructions:
+        step1: 'Foi criado com sucesso um utilizador em athena.tabkey.net.'
+        step2: 'Para ativar este utilizador, clique no link abaixo durante os próximos 60 minutos.'
+        step3: 'Se não fez nenhum pedido de registo nesta aplicação ignore este email.'
     password_reset:
       subject: '[ATHENA] Recuperação de password'
       instructions:

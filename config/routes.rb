@@ -6,6 +6,7 @@ Athena::Application.routes.draw do
     get 'logout', to: 'sessions#destroy', as: 'logout'
 
     resources :users
+    resources :user_confirmations
     resources :sessions
     resources :password_resets
     resources :documents

@@ -4,9 +4,9 @@
   %h2= @document.title
   %h3= @document.subtitle
 %dl
-  %dt Category
+  %dt= Document.human_attribute_name :category
   %dd= @document.category.to_s
-  %dt Description
+  %dt= Document.human_attribute_name :description
   %dd= @document.description
 
 .form-actions

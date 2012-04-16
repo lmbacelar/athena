@@ -23,6 +23,9 @@ en:
     signup: 'Sign Up'
     login: 'Login'
     logout: 'Logout'
+    send: 'Send'
+    activate: 'Activate'
+    confirm_user: 'Confirm user'
     reset_password: 'Reset password'
 
   session:
@@ -38,6 +41,8 @@ en:
       destroy: 'was successfully destroyed.'
       logged_in: 'Logged In!'
       logged_out: 'Logged Out!'
+      user_confirmation_email_sent: 'Email sent with user activation link.'
+      user_activated: 'User has successfully been activated.'
       password_reset_email_sent: 'Email sent with password reset instructions.'
       password_reset: 'Password has been reset!'
     alert:
@@ -63,6 +68,12 @@ en:
         password_confirmation: 'Password confirmation'
 
   user_mailer:
+    confirmation:
+      subject: '[ATHENA] User confirmation'
+      instructions:
+        step1: 'You have successfully signed up to a new user on athena.tabkey.net.'
+        step2: 'To activate this user, click the URL below, within the next hour.'
+        step3: 'If you did not sign up to this site, just ignore this email.'
     password_reset:
       subject: '[ATHENA] Password reset'
       instructions:

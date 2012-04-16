@@ -1,0 +1,12 @@
+= form_tag user_confirmations_path, method: :post, class: 'simple_form form-horizontal' do
+  %fieldset
+    %legend= t 'actions.confirm_user'
+    .control-group.email.required
+      .control-label.email.required
+        = label_tag User.human_attribute_name(:email)
+      .controls
+        = text_field_tag :email, params[:email]
+    .form-actions
+      = submit_tag t('actions.send'), class: 'btn btn-primary'
+      = link_to t('actions.cancel'), root_path, class: 'btn'
+
