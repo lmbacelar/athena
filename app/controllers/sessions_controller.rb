@@ -2,10 +2,9 @@ class SessionsController < ApplicationController
   def new
   end
 
-  # TODO: Users should be loged in only when approved
   def create
     user = User.find_by_email(params[:email])
-    if user && user.confirmed? && user.authenticate(params[:password])
+    if user && user.active? && user.authenticate(params[:password])
       if params[:remember_me]
         cookies.permanent[:auth_token] = user.auth_token
       else
@@ -14,7 +13,7 @@ class SessionsController < ApplicationController
       redirect_to root_url, notice: t('flash.notice.logged_in')
     else
       flash.now.alert = t('flash.alert.login_invalid')
-      render "new"
+      render 'new'
     end
   end
 

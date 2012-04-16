@@ -11,11 +11,11 @@ class User < ActiveRecord::Base
     name || email
   end
 
-  def send_confirmation
-    generate_token(:confirmation_token)
-    self.confirmation_sent_at = Time.zone.now
+  def send_activation
+    generate_token(:activation_token)
+    self.activation_sent_at = Time.zone.now
     save!
-    UserMailer.confirmation(self).deliver
+    UserMailer.activation(self).deliver
   end
 
   def send_password_reset

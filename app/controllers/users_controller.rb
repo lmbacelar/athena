@@ -7,9 +7,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      #cookies[:auth_token] = @user.auth_token
-      @user.send_confirmation
-      redirect_to root_url, notice: t('flash.notice.user_confirmation_email_sent')
+      @user.send_activation
+      redirect_to root_url, notice: t('flash.notice.user_activation_email_sent')
     else
       render 'new'
     end

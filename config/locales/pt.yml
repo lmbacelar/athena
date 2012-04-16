@@ -25,7 +25,6 @@ pt:
     logout: 'Terminar sessão'
     send: 'Enviar'
     activate: 'Ativar'
-    confirm_user: 'Confirmar utilizador'
     reset_password: 'Recuperar password'
 
   session:
@@ -36,13 +35,13 @@ pt:
   flash:
     notice:
       signup: 'Obrigado pelo seu registo!'
-      create: 'foi criado com sucesso.'
-      update: 'foi actualizado com sucesso.'
-      destroy: 'foi destruído com sucesso.'
+      create: 'foi criado com sucesso!'
+      update: 'foi actualizado com sucesso!'
+      destroy: 'foi destruído com sucesso!'
       logged_in: 'Sessão iniciada com sucesso!'
       logged_out: 'Sessão terminada com sucesso!'
-      user_confirmation_email_sent: 'Foi enviado um email com instruções para confirmar o utilizador.'
-      user_confirmed: 'O utilizador foi confirmado com sucesso.'
+      user_activation_email_sent: 'Foi enviado um email com instruções para ativar o utilizador.'
+      user_activated: 'O utilizador foi ativado com sucesso!'
       password_reset_email_sent: 'Foi enviado um email com instruções para recuperar a password.'
       password_reset: 'Password alterada com sucesso!'
     alert:
@@ -68,7 +67,7 @@ pt:
         password_confirmation: 'Confirme password'
 
   user_mailer:
-    confirmation:
+    activation:
       subject: '[ATHENA] Ativação de utilizador'
       instructions:
         step1: 'Foi criado com sucesso um utilizador em athena.tabkey.net.'

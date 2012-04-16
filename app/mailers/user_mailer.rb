@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
     mail to: user.email
   end
 
-  def confirmation(user)
+  def activation(user)
     @user = user
     mail to: user.email
   end

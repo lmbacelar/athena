@@ -1,11 +1,10 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
-User.create email: 'lmbacelar@gmail.com',
+User.create(email: 'lmbacelar@gmail.com',
             name: 'Luis Bacelar',
             password: 'secret',
-            password_confirmation: 'secret',
-            confirmed: true
+            password_confirmation: 'secret').update_attribute(:active, true)
 l1 = Category.create  name: 'Manual da Qualidade',
                       acronym: 'MQ',
                       level: 1
