@@ -1,4 +1,12 @@
 FactoryGirl.define do
+  factory :user do
+    sequence(:email) { |n| "user#{n}@somedummymail.net" }
+    sequence(:name) { |n| "User #{n}" }
+    password 'secret'
+    password_confirmation 'secret'
+    active true
+  end
+
   factory :category do
     sequence(:name) { |n| "Category #{n}" }
     sequence(:acronym) { |n| "C#{n}" }
@@ -18,7 +26,7 @@ FactoryGirl.define do
   end
 
   factory :state_change do
-    user 'User'
+    user
     state 'initiated'
     version
   end
