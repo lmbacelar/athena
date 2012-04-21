@@ -2,7 +2,6 @@ class Version < ActiveRecord::Base
 
   # # # # # Callbacks
   before_validation :increment_number
-  after_create      :create_state_change
 
   # # # # # Attr Protection
   # TODO: change to attr_accessible when accessible
@@ -19,9 +18,13 @@ class Version < ActiveRecord::Base
 
   # # # # # State Machine Setup
   state_machine initial: :initiated do
-    # TODO: maybe replace after_create callback with initialize
-    #       overloading on state_machine
-    after_transition :add_state_change
+    before_transition do |version, transition|
+      # Succesfull transitions require passing a :user parameter. This is
+      # passed to track which user changed the state.
+      state_change = version.state_changes.build(state: transition.human_to_name,
+                                                 user:  transition.args[0][:user])
+      throw :halt unless state_change.save
+    end
 
     event :check    do ( transition :initiated           => :draft     ) end
     event :publish  do ( transition [:draft, :withdrawn] => :published ) end
@@ -52,14 +55,6 @@ class Version < ActiveRecord::Base
 
   # # # # # Private Methods
 private
-  def create_state_change
-    self.state_changes.create state: human_state_name, user: 'User'
-  end
-
-  def add_state_change(transition)
-    self.state_changes.create state: transition.human_to_name, user: 'User'
-  end
-
   def increment_number
     if document
       self.number = 1 + (document.versions.maximum(:number) || 0)

@@ -5,6 +5,7 @@ class StateChange < ActiveRecord::Base
   validates :version, presence: true
 
   # # # # # Associations
+  belongs_to :user
   belongs_to :version
 
   # # # # # Public Methods

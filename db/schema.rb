@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20120413231751) do
   end
 
   create_table "state_changes", :force => true do |t|
-    t.string   "user"
+    t.integer  "user_id"
     t.string   "state"
     t.string   "event"
     t.integer  "version_id"
