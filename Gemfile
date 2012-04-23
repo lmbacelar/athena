@@ -16,8 +16,9 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.0.2'
 end
 
-gem 'rspec-rails', group: [:test, :development]
 group :test do
+  gem 'rspec-rails'
+  gem 'haml-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'guard-rspec'
@@ -25,6 +26,7 @@ group :test do
 end
 
 group :development do
+  gem 'rspec-rails'
   gem 'haml-rails'
   gem 'pry-rails'
   gem 'hirb'
