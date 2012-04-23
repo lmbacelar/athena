@@ -6,14 +6,14 @@ describe Document do
 
     it { should validate_presence_of :name }
     it { should validate_presence_of :title }
-    it { should validate_presence_of :category }
+    it { should validate_presence_of :category_id }
 
     specify 'name should be unique' do
-      doc.should validate_uniqueness_of(:name)
+      doc; should validate_uniqueness_of(:name)
     end
 
     specify 'title should be unique' do
-      doc.should validate_uniqueness_of(:title)
+      doc; should validate_uniqueness_of(:title)
     end
 
     it 'should be valid with all valid attributes' do

@@ -10,11 +10,11 @@ describe Category do
     it { should ensure_inclusion_of(:level).in_range(1..12) }
 
     specify 'name should be unique' do
-      cat.should validate_uniqueness_of :name
+      cat; should validate_uniqueness_of :name
     end
 
     specify 'acronym should be unique' do
-      cat.should validate_uniqueness_of :acronym
+      cat; should validate_uniqueness_of :acronym
     end
 
     it 'should be valid with all valid attributes' do

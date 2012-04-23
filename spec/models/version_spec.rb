@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Version do
   describe 'validations:' do
     it { should validate_presence_of :number }
-    it { should validate_presence_of :document }
+    it { should validate_presence_of :document_id }
   end
 
   describe 'associations:' do
@@ -150,5 +150,4 @@ describe Version do
       vsn.last_state_change.state.should eq(vsn.state)
     end
   end
-
 end
