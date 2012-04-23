@@ -31,7 +31,24 @@ RSpec.configure do |config|
   # Simplified Syntax enabling
   config.include FactoryGirl::Syntax::Methods
 
+  # Mailer test macros
+  config.include MailerMacros
+  config.before(:each) { reset_email }
+
   # Setup default formatter
   # config.formatter     = 'documentation'
   config.formatter     = 'progress'
+end
+
+# workaround, to set default locale for ALL spec
+class ActionView::TestCase::TestController
+  def default_url_options(options={})
+    { :locale => I18n.default_locale }
+  end
+end
+
+class ActionDispatch::Routing::RouteSet
+  def default_url_options(options={})
+    { :locale => I18n.default_locale }
+  end
 end
