@@ -1,10 +1,29 @@
 FactoryGirl.define do
+  factory :group do
+    sequence(:name) { |n| "Group #{n}" }
+    sequence(:description) { |n| "This is Group #{n}'s description" }
+  end
+
+  factory :role do
+    sequence(:name) { |n| "Role #{n}" }
+    sequence(:description) { |n| "This is Role #{n}'s description" }
+  end
+
+  factory :membership do
+    user
+    role
+    group
+  end
+
   factory :user do
     sequence(:email) { |n| "user#{n}@somedummymail.net" }
     sequence(:name) { |n| "User #{n}" }
     password 'secret'
     password_confirmation 'secret'
     active true
+    after_create do |u|
+      FactoryGirl.create(:membership, user: u)
+    end
   end
 
   factory :category do
