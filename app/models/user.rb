@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   validates_presence_of :password, on: :create
 
   # # # # # Public Methods              # # # # #
+  def short_email
+    email[/(^.*)@/,1]
+  end
+
   def to_s
     name || email
   end
@@ -43,18 +47,6 @@ class User < ActiveRecord::Base
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
-  end
-
-  def role?(role_sym)
-    roles.any? { |r| r.name.underscore.to_sym == role_sym }
-  end
-
-  def role_list
-    roles.collect {|r| r.name}.join(', ')
-  end
-
-  def short_email
-    email[/(^.*)@/,1]
   end
 
   # # # # # Private Methods             # # # # #
