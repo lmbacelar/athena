@@ -10,7 +10,7 @@ class Version < ActiveRecord::Base
 
   # # # # # Validations
   validates :number, presence: true, uniqueness: { scope: :document_id }
-  validates :document, presence: true
+  validates :document_id, presence: true
 
   # # # # # Associations
   belongs_to :document, touch: true

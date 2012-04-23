@@ -1,8 +1,8 @@
 class StateChange < ActiveRecord::Base
   # # # # # Validations
-  validates :user, presence: true
   validates :state, presence: true
-  validates :version, presence: true
+  validates :user_id, presence: true
+  validates :version_id, presence: true
 
   # # # # # Associations
   belongs_to :user
