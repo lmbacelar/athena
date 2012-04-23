@@ -1,12 +1,26 @@
 class User < ActiveRecord::Base
-
+  # # # # # Includes / Extends          # # # # #
   has_secure_password
+
+  # # # # # Constants                   # # # # #
+  # # # # # Instance Variables          # # # # #
+  # # # # # Callbacks                   # # # # #
   before_create { generate_token(:auth_token) }
 
+  # # # # # Attr_accessible / protected # # # # #
   attr_accessible :email, :name, :password, :password_confirmation
+
+  # # # # # Associations / Delegates    # # # # #
+  has_many :memberships, dependent: :destroy
+  has_many :roles, through: :memberships
+  has_many :groups, through: :memberships
+
+  # # # # # Scopes                      # # # # #
+  # # # # # Validations                 # # # # #
   validates :email, presence: true, uniqueness: true
   validates_presence_of :password, on: :create
 
+  # # # # # Public Methods              # # # # #
   def to_s
     name || email
   end
@@ -30,4 +44,18 @@ class User < ActiveRecord::Base
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
   end
+
+  def role?(role_sym)
+    roles.any? { |r| r.name.underscore.to_sym == role_sym }
+  end
+
+  def role_list
+    roles.collect {|r| r.name}.join(', ')
+  end
+
+  def short_email
+    email[/(^.*)@/,1]
+  end
+
+  # # # # # Private Methods             # # # # #
 end
