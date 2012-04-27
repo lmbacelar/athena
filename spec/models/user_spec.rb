@@ -21,6 +21,27 @@ describe User do
     it { should have_many(:roles).through(:memberships) }
   end
 
+  describe '#send_activation' do
+    let(:user) { create(:user) }
+
+    it 'generates a unique activation_token each time' do
+      user.send_activation
+      last_token = user.activation_token
+      user.send_activation
+      user.activation_token.should_not eq(last_token)
+    end
+
+    it 'saves the time the activation was sent' do
+      user.send_activation
+      user.reload.activation_sent_at.should be_present
+    end
+
+    it 'delivers email to user' do
+      user.send_activation
+      last_email.to.should include (user.email)
+    end
+  end
+
   describe '#send_password_reset' do
     let(:user) { create(:user) }
 
