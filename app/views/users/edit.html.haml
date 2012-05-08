@@ -1,0 +1,11 @@
+= simple_form_for @user, html: {class: 'form-horizontal'} do |f|
+  %fieldset
+    %legend= "#{t("actions.#{controller.action_name.downcase}")} #{User.model_name.human}"
+    = f.input :email, input_html: { readonly: true }
+    = f.input :name
+    = f.input :password, placeholder: t('simple_form.placeholder.blank_for_no_change')
+    = f.input :password_confirmation, placeholder: t('simple_form.placeholder.blank_for_no_change')
+
+    .form-actions
+      = f.button :submit, class: 'btn-primary'
+      = link_to t('actions.cancel'), root_path, class: 'btn'
