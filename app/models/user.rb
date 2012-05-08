@@ -26,7 +26,11 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    name || email
+    if name?
+      name
+    else
+      email
+    end
   end
 
   def send_activation
