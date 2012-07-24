@@ -10,19 +10,19 @@ It handles documentation on an organization allowing the control of:
 
 == Features
 
-(1) General
-  (1) Version control
-  (2) User access control, Department and/or Role based
+1 General
+  1 Version control
+  2 User access control, Department and/or Role based
 
-(2) External Documents
-  (1) Periodic alerting for update check
-  (2) Publisher / Vendor tracking
+2 External Documents
+  1 Periodic alerting for update check
+  2 Publisher / Vendor tracking
 
-(3) Internal Documents / Models
-  (1) Document hierarchy definition
-  (2) Initiated, Draft, Published, Withdrawn, Discarded states control
-  (3) Content management, layout definition, version diffs
-  (4) Document references/is referenced by...
+3 Internal Documents / Models
+  1 Document hierarchy definition
+  2 Initiated, Draft, Published, Withdrawn, Discarded states control
+  3 Content management, layout definition, version diffs
+  4 Document references/is referenced by...
 
-(4) Records
-  (1) Indexing, searching, relationships
+4 Records
+  1 Indexing, searching, relationships
